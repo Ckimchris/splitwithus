@@ -6,7 +6,10 @@ import GitHubButton from './GitHubButton';
 import SignUpButton from './SignUpButton';
 import IconButton from 'material-ui/IconButton';
 import {Tabs, Tab} from 'material-ui/Tabs';
-    
+import UserForm from './UserForm';
+import Password from './Password';
+
+
 
 export default class Modal extends React.Component {
     state = {
@@ -19,6 +22,10 @@ export default class Modal extends React.Component {
 
     handleLogInOpen = () => {
         this.setState({ value: 2 });
+    };
+
+    handleNewUserOpen = () => {
+        this.setState({ value: 3 });
     };
 
     handleClose = () => {
@@ -36,6 +43,7 @@ export default class Modal extends React.Component {
 
         return (
             <div>
+                <a href='/logout'><FlatButton label="Log Out" /></a>            
                 <FlatButton label="Sign Up" onClick={this.handleSignUpOpen} />
                 <FlatButton label="Log In" onClick={this.handleLogInOpen} />
                 <Dialog
@@ -43,8 +51,9 @@ export default class Modal extends React.Component {
                     modal={false}
                     open={this.state.value === 1}
                     onRequestClose={this.handleClose}>
+                    <a href='/auth/github'><GitHubButton /></a>                    
                     <br/>
-                    <SignUpButton />
+                    <RaisedButton label = "Sign Up With Email" onClick={this.handleNewUserOpen} fullWidth={true}/>
                     <hr />
                     <p>Already have an account?<a href={this.state.handleSignSwitch}>Click Here</a></p>
                     <FlatButton label="Next" onClick={this.handleLogInOpen} />
@@ -54,12 +63,22 @@ export default class Modal extends React.Component {
                     modal={false}
                     open={this.state.value === 2}
                     onRequestClose={this.handleClose}>
-                    <GitHubButton />
-                    <br/>
-                    <SignUpButton />
+                    <a href='/auth/github'><GitHubButton /></a>                    
                     <hr />
-                    <p>Already have an account?<a href={this.state.handleSignSwitch}>Click Here</a></p>
+                    <UserForm />
+                    <br />
+                    <Password />
+                    <p>Don't have an account?<a href={this.state.handleSignSwitch}>Click Here</a></p>
                     <FlatButton label="Next" onClick={this.handleSignUpOpen} />
+                </Dialog>
+                <Dialog
+                    title={actions}
+                    modal={false}
+                    open={this.state.value === 3}
+                    onRequestClose={this.handleClose}>
+                    <UserForm />
+                    <br />
+                    <Password />
                 </Dialog>
             </div>
         );

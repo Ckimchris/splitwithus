@@ -8,7 +8,7 @@ const style = {
 
 const GitHubButton = () => (
   <div>
-    <RaisedButton label="Sign up with GitHub" fullWidth={true} />
+    <RaisedButton label="Log In with GitHub" fullWidth={true} />
   </div>
 );
 
