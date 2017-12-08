@@ -14,14 +14,10 @@ const session = require('express-session');
 
 const port = 8080;
 /***************************
-<<<<<<< HEAD
- * Static files middleware
-=======
  * Middleware
  - Serve Static files 
  - Body and cookie parsing middleware
  - Initialize Express Sessions
->>>>>>> 701ff79cbf3ea2cc891f21317b32448dccefb214
  ***************************/
 app.use(function (req, res, next) {
   if (req.url.match(/.js$|.html$|.css$|.png$|.woff|.woff2|.tff$/)) {
@@ -29,27 +25,12 @@ app.use(function (req, res, next) {
   } else next();
 });
 
-<<<<<<< HEAD
-app.use(passport.initialize());
-app.use(passport.session());
-
-/***************************
- * Body and cookie parsing middleware
- ***************************/
-=======
->>>>>>> 701ff79cbf3ea2cc891f21317b32448dccefb214
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-<<<<<<< HEAD
-/***************************
- * Initialize Express Sessions
- ***************************/
-=======
 app.use(passport.initialize());
 app.use(passport.session());
->>>>>>> 701ff79cbf3ea2cc891f21317b32448dccefb214
 app.use(session({
   key: 'user_sid',
   secret: 'nyancatmeow',
@@ -92,8 +73,6 @@ function (accessToken, refreshToken, profile, done) {
   return done(null, profile);
 }
 ));
-<<<<<<< HEAD
-=======
 
 passport.serializeUser(function(user, done) {
   // placeholder for custom user serialization
@@ -118,7 +97,6 @@ function(req, res) {
 }
 );
 
->>>>>>> 701ff79cbf3ea2cc891f21317b32448dccefb214
 /***************************
  * ROUTING
  ***************************/
@@ -161,11 +139,7 @@ app.get('/users', userController.allUsers);
 app.get('/services', serviceController.allServices);
 
 // Login/Logout Routes
-<<<<<<< HEAD
-app.get('/login', userController.login);
-=======
-app.post('/login', userController.login, );
->>>>>>> 701ff79cbf3ea2cc891f21317b32448dccefb214
+app.post('/login', userController.login);
 app.get('/logout', userController.logout);
 
 // Forgot Password
